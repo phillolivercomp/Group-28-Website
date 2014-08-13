@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link href="webpage.css" rel="stylesheet" type="text/css" title="default"/>
+		<title>DoS Attacks- Types</title>
+		<script type="text/javascript" src="types.js"></script>
+	</head>
+	<body onload="initialise();">
+		<div id="content">
+			<div id="navbar">
+				<a id="home" class="nav_head" href= "home.html">HOME</a>
+				<a id="types" class="nav_head" href= "types.html">TYPES</a>
+				<a id="handling" class="nav_head" href= "handling.html">HANDLING</a>
+				<a id="news" class="nav_head" href= "news.html">NEWS</a>
+				<a id="legal" class="nav_head" href= "legal.html">LEGAL</a>
+			</div>
+			<!--<div id="title"><img class="central" src="title.png"></div> -->
+			<h1>Types</h1>
+	<div id="menu">
+			<ol>
+				<li><a id = "1" href="#icmp">Internet Control Message Protocol (ICMP) flood</a></li>
+				<li><a id = "2" href="#ping">Ping</a></li> 
+				<li><a id = "3" href="#pingod">Ping of Death</a></li>
+				<li><a id = "4" href="#syn">SYN Flood</a></li>
+				<li><a id = "5" href="#teardrop">Teardrop</a></li>
+				<li><a id = "6" href="#nuke">Nuke</a></li>
+				<li><a id = "7" href="#p2p">Peer-to-peer</a></li> 
+				<li><a id = "8" href="#aoruisa">Asymmetry of resource utilization in starvation attacks</a></li>
+				<li><a id = "9" href="#pdos">Permanent Denial-of-Service attack</a></li>
+				<li><a id = "10" href="#alf">Application level floods</a></li> 
+				<li><a id = "11" href="#owasp">OWASP HTTP Post Denial of Service Tool</a></li> 
+				<li><a id = "12" href="#rudy">R-U-Dead-Yet? (RUDY)</a></li>
+				<li><a id = "13" href="#sra">Slow Read attack</a></li>
+				<li><a id = "14" href="#ddos">Distributed attack</a></li>
+				<li><a id = "15" href="#rsa">Reflected / Spoofed attack</a></li>
+				<li><a id = "16" href="#tdos">Telephony denial of service</a></li>
+				<li><a id = "17" href="#udos">Unintentional denial of service</a></li>
+				<li><a id = "18" href="#dos2">Denial-of-Service Level II</a></li>
+			</ol>
+	</div>
+
+	<div id="normaltext">
+		<div class = "type" id ="icmp"> 
+			<h2>Internet Control Message Protocol (ICMP) flood</h2>
+
+			<p>There are three types of ICMP flooding DoS attacks:  The smurf attack, the ping flood and the ping of death. The smurf attack aims to do serious damage to a network service, either individually as a user or towards an entire institution. The process is as follows:</p>
+
+			<ul>
+				<li>	
+					The hacker selects/indentifies the IP address of a select victim
+				</li> 
+				<li>	
+					The hacker identifies at least one intermediary site to amplify the attack, however they usually select more than one to further disguise the attack
+				</li>
+				<li>
+					The hacker sends a large amount of ICMP packets at the broadcast address of the intermediary site. These packets have the source IP address faked to look like it's in fact the victim's.</li>
+<li>	The intermediary website delivers the broadcast to all hosts on their network</li>
+<li>	Hosts reply to victim network and the victim's computer is flooded with traffic, slowing it down to the point where it becomes impossible to work on.</li>
+
+</ul> 
+<p>To prevent a smurf attack one should switch off the broadcast address feature of the external router and firewall as such a feature is seldom used. On Cisco routers the command no ip directed-broadcast should be applied to each interface.
+Asta Networks has developed the Vantage System, a software package that can detect smurf attacks before they occur. As its management is web based a network administrator can monitor the network to watch for attacks and when one is detected it sends an alert email to the administrator.
+Also services like the Smurf Amplifier Registry has given network service providers the ability to identify misconfigured networks and filter them.</p>
+
+</div>
+
+
+<div class = "type" id="ping">
+<h2>Ping:</h2>
+<p>A ping flood is a simple DoS attack to execute and only requires the attacker to have greater bandwidth than the victim. The attacker sends a continuous series of ICMP Echo Request (aka Ping) packets without waiting for any reply to a target host on the network. If the victim responds with ICMP Echo Reply packets both outgoing and incoming bandwidth will be consumed and there will be a significant slowdown.
+To combat this one should reconfigure their perimeter router or firewall to disallow ICMP Echo Requests on their internal network which will prevent flood attacks from outside the network but not internal flood attacks</p> 
+
+</div>
+
+<div class = "type" id="pingod">
+<h2>Ping of Death:</h2>
+<p>The ping of death is a type of attack where malicious or malformed ping is sent to a computer. This type of attack was used typically in the days where a computer could only handle a ping packet of 65, 535 bytes; sending anything above that would crash the target computer. Some would fragment the package so the computer can handle it and once the computer reassembled the packet the system would crash. This method of attack is outdated now and ping flood is now the DoS attack that has taken its place.</p>
+
+</div>
+
+
+<div class = "type" id="syn">
+<h2>SYN Flood:</h2>
+<p>An SYN attack is a type of DoS attack where an attacker bombards a target system with SYN requests with the hope of consuming enough server resources make the system unresponsive to legitimate requests.</p>
+
+
+<h2>Method:</h2>
+<p>To connect to a server the client has to request a SYN message to the server, which then sends SYN-ACK back in response and the client establishes the connection finally with an ACK. The attacker sends several packets but does not send the ACK back to the server which is needed to fully establish a connection. The connection is left half open and during the attack and increasingly large number of half open connections will bind resource until no new connections can be made which may cause some systems to malfunction or crash.</p>
+
+
+Coutermeasures:
+
+<ul>
+<li>Filtering</li>
+<li>Increase Backlog</li>
+<li>Reduce SYN-RECEIVED Timer</li>
+<li>Recycling Oldest Half Open TCP</li>
+<li>SYN Cache</li>
+<li>SYN cookies</li>
+<li>Firewalls and (Reverse) Proxies (to be deployed at the moment of attack)</li>
+
+</ul>
+
+</div>
+
+
+<div class = "type" id="teardrop">
+<h2>Teardrop:</h2>
+<p>Teardrop is a program that sends IP fragments to a machine connected to the Internet or a network. Teardrop exploits an overlapping bug present in Windows 95, Windows NT and Windows 3.1 machines, causing the bug to improperly handle overlapping fragments and crash (with Windows Users meeting the Blue Screen of Death) or reboot. The attack doesn't cause any significant damage to systems and all that is required to fix this is a simple reboot. The main problem with this attack is that it could cause one to lose unsaved data. If you're experiencing attacks on a Linux based system upgrade to version 2.0.32/2.1.63 or later.</p>
+
+</div>
+
+<div class = "type" id="nuke">
+<h2>Nuke:</h2>
+<p>A Nuke is an obsolete type of (DoS) attack carried out by repeatedly sending fragmented or corrupted packets, which were usually ICMB to a target machine. For any machine running an older more vulnerable operating system, like the earlier Windows, sending such packets to it will slow down and eventually stop it, resulting in a crash or Blue Screen of Death.</p>
+
+</div>
+
+<div class = "type" id="p2p">
+<h2>Peer-to-Peer attacks:</h2>
+<p>With peer to peer attacking the attacker does not have to communicate with its clients, instead instructing clients of large peer-to-peer sharing hubs to disconnect from their network and connect to the victim's instead, resulting in possible several thousand computers trying to connect to the target site. After about five or six thousand connections per second most web servers fail instantly after being bombarded with so many connections.
+This type of attack also overwhelms mitigation defenses as too many IP addresses need to be blocked. 
+To prevent this method of attack specify in the peer-to-peer control which ports are allowed and which are not. If Port 80 (the port typically used by HTTP) is not allowed the possibilities of an attack will be severely reduced.</p>
+
+</div>
+
+
+<div class = "type" id="aoruisa">
+<h2>Asymmetry of resource utilization in starvation attacks:</h2>
+<p>An attack where resources on the victims computer are consumed. To do with the attacker must be accompanied with great computation power or great bandwidth or be controlling a large number of computers which they direct to attack as a group.  These large number of computers are usually infected with a Trojan. The victims are the end target system and all systems maliciously used by the hacker during the attack. Smurf attack, SYN flood, and NAPTHA are all asymmetric attacks.</p>
+
+</div>
+
+
+<div class = "type" id="pdos">
+<h2>Permanent Denial-of-Service</h2>
+<p>Permanent denial-of-service (PDoS) attacks are those that damage a system to the extent that nothing can be done and said system must either be replaced or its hardware reinstalled. A PDoS exploits security flaws responsible for management interfaces of the victim's hardware such as routers, printers and other networking hardware.  The attacker uses this exploitation to replace the victim's firmware with modified, corrupt or damaged firmware. The device is thus bricked and rendered unusable. 
+PDOS attacks are much faster and require fewer resources than a DDoS attack so hackers tend to be drawn to using this method.</p>
+
+</div>
+
+<div class = "type" id="alf">
+<h2>Application level floods:</h2>
+<p>A variety of DoS which cause exploits such as buffer overflow causing server running software to get confused and consume all available memory.
+The intent of an application level DDoS is to prevent a targeted server from carrying out its intended purpose by making a large amount of application requests from bot clients using spoof IP addresses e.g. A banana attack which involves redirecting outgoing messages from the client back to the client preventing outside access.</p>
+
+</div>
+				
+
+<div class = "type" id= "owasp">
+<h2>OWASP HTTP Post Denial of Service Tool</h2>
+<p>The OWASP HTTP Post Tool completes the request headers phase however it sends the request body (post payload) very slowly (e.g. - 1 byte/110sec). This tool helps in making web application security assessment around the availability concerns.</p>
+</div>
+
+<div class = "type"  id= "rudy">
+<h2>R-U-Dead-Yet? (RUDY)</h2>
+<p>This is a type of attack on web application that works by starvation of available sessions on a web server. RUDY exploits a behaviour of the websites that allows them to support users with slow connections. Therefore, it injects data one byte at a time in the field and waits. The application threads have to await the end of the endless posts to perform processing. While the webserver waits, simultaneous connections are initialised and the server’s table of connections is exhausted.</p>
+<ul>
+<li>Susceptible Websites: all that contain forms, even feedback and that allow HTTP POST</li>
+<li>Interesting fact: named after the Children of Bodom album “Are You Dead Yet?”</li>
+</ul>
+</div>
+
+<div class = "type"  id= "sra">
+<h2>Slow Read attack</h2>
+<p>Slow Read attack sends legitimate application layer requests but reads responses very slowly by using a small TCP window to accept the response, thus trying to exhaust the server's connection pool. The transfer is slowed down and the sockets are kept open.  Multiple requests with large file end up having a DoS effect on the server </p>
+</div>
+
+<div class = "type" id= "ddos">
+<h2>Distributed attack</h2>
+<p>(click on the image to see how the attack works)</p>
+<img id= "viz" src="visitor.png" alt="visitor">
+<p>Distributed Denial of Service Attacks occur when multiple systems flood the resources or bandwidth of a target which may be one or multiple web servers. </p>
+<ul>
+Advantages for the attacker
+<li>multiple machines can generate more traffic</li>
+<li>the attack is hard to turn off</li>
+<li>the attack is hard to locate </li>
+</ul>
+
+<ul>Types of DDoS:
+<li>with consent. Eg. Operation Payback by Annonymous directed at piracy opponents</li>
+<li>without consent - through malware: zombie agents, trojans etc </li>
+<p>click the image</p>
+<img id = "annon" src="img1.jpg" alt="piracy" height="300" width="300">
+<p><a href="https://www.youtube.com/watch?v=OhA9PAfkJ10">YouTube video describing DDoS</a></p> 
+<p><a href="https://www.youtube.com/watch?v=SCcpauJp63c">A more clear explanation</a></p>
+</ul>
+
+</div>
+
+<div class = "type"  id= "rsa">
+<h2>Reflected / Spoofed attack</h2>
+<p>Advantages:</p>
+<ul>
+<li>Amplification = the response is larger than the request sent by the attacker and it can exhaust the resources of the victim</li>
+
+<li>Anonimity = by a procedure called spoofing the target seems to be attacked by the victim's servers and not by the real attacker, thus protecting the identity of the attacker</li>
+
+</ul>
+<p></p>
+</div>
+
+<div class = "type"  id= "tdos">
+<h2>Telephony denial of service</h2>
+<p>Even though they do not get so much attention from the media, Telephony denial of service attacks are a threat to welfare and security. FBI issued public warnings because of the increased number of TDoS on both public and private organisations. In the US it generated an election scandal when voting lines were taken down by a telemarketing firm. The greatest impact on public safety is when the target is the police or ambulance service. When lines are blocked by spoofed calls, genuine emergencies cannot be handled. TDoS exists both with and without Internet Telephony</p>
+<p>Example of TDoS directed at an individual: A scammer contacts consumers with a fake debt collection demand and threatens to send police; when the victim refuses, the scammer floods local police numbers with calls on which caller ID is spoofed to display the victims number. Police soon arrive at the victim's residence attempting to find the origin of the calls.
+</p>
+<p> The difference between TDoS and other forms of telephone harassment like prank calls is the number of calls. Automated calls occupy the lines so that the victim cannot make or receive any calls be them routine or emergency telephone calls.</p>
+</div>
+
+<div class = "type"  id= "udos">
+<h2>Unintentional denial of service</h2>
+<p>These attacks occur when a website ends up denied because of a sudden spike in popularity. Users try to access the same link in a very short time. This has a similar effect as a DDoS attack and render the website unavailable. </p>
+<p>Examples: </p>
+<ul>
+<li>Michael Jackson’s death caused Twitter and Google to slow down and even crash, warned users that their queries looked like "automated requests from a computer virus or spyware application".</li>
+<li>Reddit hug of death</li>
+<li>Ellen Degeneres Oscar Selfie</li>
+<li>Voluntary search for the missing plane on a crowdsourcing platform</li>
+</ul>
+</div>
+
+<div  class = "type" id= "dos2">
+<h2>Denial-of-Service Level II</h2>
+<p>DoS L2 attacks have as a main purpose triggering the defense mechanism that blocks the segment of the network where the attack was placed.  If the attack was distributed, in most cases it will block the network from the internet, without causing a crash of the system. </p>
+</div>
+
+
+</div><!-- end main -->
+			
+			<div id="author">
+				<p>Russell Waterson, Matt Philpin, Phil Oliver, Diana Murgulet, Evi Ogbewe
+				</p>
+			</div>
+			
+		</div>
+		
+	</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link href="webpage.css" rel="stylesheet" type="text/css" title="default"/>
+		<title>DoS Attacks- Handling</title>
+		<script type="text/javascript" src="handling.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Lusitana' rel='stylesheet' type='text/css'>
+	</head>
+	<body onload="initialise();">
+		<div id="content">
+			<div id="navbar">
+				<a id="home" class="nav_head" href= "home.html">HOME</a>
+				<a id="types" class="nav_head" href= "types.html">TYPES</a>
+				<a id="handling" class="nav_head" href= "handling.html">HANDLING</a>
+				<a id="news" class="nav_head" href= "news.html">NEWS</a>
+				<a id="legal" class="nav_head" href= "legal.html">LEGAL</a>
+			</div>
+			<!--<div id="title"><img class="central" src="title.png"></div> -->
+			<h1>Handling</h1>
+			<div id="normaltext">
+				<p>Defending against DoS attacks are somewhat difficult, they usually involve a combination of initially detecting an attack and classifying traffic as either legitimate or illegitimate. Then blocking the illegitimate traffic.</p>
+				<div id="content_nav">
+					<img class="nav_icon" id="1" src="firewall.png">
+					<img class="nav_icon" id="2" src="switch.png">
+					<img class="nav_icon" id="3" src="router1.png">
+					<img class="nav_icon" id="4" src="ips.png">
+					<img class="nav_icon" id="5" src="clean_pipes.png">					
+				</div>
+				<div>
+					<div class="handling_items" id="1">
+						<p><h2>Firewalls:</h2>Firewalls are used to block certain protocols, ports or IP addresses. For a small attack from a small number of IP addresses these can be blocked easily by putting up a simple rule to drop incoming traffic from those attackers. For larger, more complex attacks, however, to block the traffic would be very difficult with simple rules.</p>			
+						<p>More complex attacks can be harder to block,however, for example: if there is an ongoing attack on port 80 (web service), it is not possible to drop all incoming traffic on this port because doing so will prevent the server from serving legitimate traffic. Additionally, firewalls may be too deep in the network hierarchy. Routers may be affected before the traffic gets to the firewall. Nonetheless, firewalls can effectively prevent users from launching simple flooding type attacks from machines behind the firewall.</p>
+					</div>
+					<div class="handling_items" id="2">
+						<p><h2>Switches:</h2>Switches will usually be capable of rate-limiting and will have some form of ACL capability. Some switches provide automatic and/or system-wide rate limiting, traffic shaping, delayed binding (TCP splicing), deep packet inspection and Bogon filtering (bogus IP filtering) to detect and prevent denial of service attacks through automatic rate filtering and WAN Link failover and balancing.</p>
+						<p>These schemes will work as long as the DoS attacks are something that can be prevented by using them. For example SYN flood can be prevented using delayed binding or TCP splicing. Similarly content based DoS may be prevented using deep packet inspection. Attacks originating from dark addresses or going to dark addresses can be prevented using Bogon filtering. Automatic rate filtering can work as long as you have set rate-thresholds correctly and granularly. Wan-link failover will work as long as both links have DoS/DDoS prevention mechanism.</p>
+					</div>
+					<div class="handling_items" id="3">
+						<p><h2>Routers:</h2>Similar to switches, routers have some rate-limiting and ACL capability. They, too, are manually set. Most routers can be easily overwhelmed under a DoS attack. Cisco IOS(software used on most Cisco Systems routers and current Cisco network switches) has features that prevent flooding, i.e. example settings.</p>
+					</div>
+					<div class="handling_items" id="4">
+						<p><h2>Intrusion-prevention systems:</h2>IPS are effective if the attacks have signatures associated with them. However, the trend among the attacks is to have legitimate content but bad intent. Intrusion-prevention systems which work on content recognition cannot block behaviour-based DoS attacks.</p>
+						<p>An ASIC based IPS may detect and block denial of service attacks because they have the processing power and the granularity to analyse the attacks and act like a circuit breaker in an automated way.</p>
+						<p>A rate-based IPS (RBIPS) must analyse traffic granularly and continuously monitor the traffic pattern and determine if there is traffic anomaly. It must let the legitimate traffic flow while blocking the DoS attack traffic.</p>
+					</div>
+					<div class="handling_items" id="5">
+						<p><h2>Clean pipes:</h2>All traffic is passed through a "cleaning centre" or a "scrubbing centre" via various methods such as proxies, tunnels or even direct circuits, which separates "bad" traffic (DDoS and also other common internet attacks) and only sends good traffic beyond to the server. The provider needs central connectivity to the Internet to manage this kind of service unless they happen to be located within the same facility as the "cleaning centre" or "scrubbing centre".</p>
+					</div>
+				</div>
+			</div>
+			<div id="author">
+				<p>Russell Waterson, Matt Philpin, Phil Oliver, Diana Murgulet, Evi Ogbewe
+				</p>
+			</div>
+			
+		</div>
+		
+	</body>
+</html>
